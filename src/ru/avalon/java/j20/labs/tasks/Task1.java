@@ -25,9 +25,9 @@ public class Task1 implements Task {
     @Override
     public void run() {
         int[] array = arrayFactory.getInstance(20);
-        int min = Numbers.min(array);
-        int max = Numbers.max(array);
-        double avg = Numbers.avg(array);
+        int min = Numbers.min(Numbers.castIntToInteger(array));
+        int max = Numbers.max(Numbers.castIntToInteger(array));
+        double avg = Numbers.avg(Numbers.castIntToDouble(array));
         /*
          * TODO(Студент): Выполните задание №1
          *

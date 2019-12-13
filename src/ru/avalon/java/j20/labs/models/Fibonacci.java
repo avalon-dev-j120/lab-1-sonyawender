@@ -17,12 +17,34 @@ import java.util.Iterator;
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">Числа Фибоначчи</a>
  */
 public class Fibonacci implements Iterable<Integer> {
+    private int[] fibpnacciArr;
+
+    public Fibonacci(int length) {
+        fibpnacciArr = new int[length];
+        if (length > 0) {
+            fibpnacciArr[0] = 0;
+        }
+        if (length > 1) {
+            fibpnacciArr[1] = 1;
+        }
+        if (length > 2) {
+            for (int i = 2; i < length; i++) {
+                fibpnacciArr[i] = fibpnacciArr[i - 1] + fibpnacciArr[i - 2];
+            }
+        }
+    }
 
     /**
      * Итератор, выполняющий обход последовательности
      * чисел Фибоначчи.
      */
-    private static class FibonacciIterator implements Iterator<Integer> {
+
+    private class FibonacciIterator implements Iterator<Integer> {
+        private int next;
+
+        public FibonacciIterator() {
+            next = 0;
+        }
 
         /**
          * Определяет, есть ли следующее значение
@@ -34,7 +56,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return next < fibpnacciArr.length;
         }
 
         /**
@@ -45,7 +67,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public Integer next() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return fibpnacciArr[next++];
         }
     }
 
